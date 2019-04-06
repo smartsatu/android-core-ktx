@@ -1,7 +1,13 @@
 package com.smartsatu.android.core.app
 
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.smartsatu.android.core.content.toast
 
+
+fun Fragment.toast(text: String, duration: Int = Toast.LENGTH_SHORT) {
+    context?.toast(text, duration)
+}
 
 // Navigation
 

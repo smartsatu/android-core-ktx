@@ -4,10 +4,9 @@ import android.accounts.AccountManager
 import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
-import android.util.SparseArray
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.util.containsKey
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 /**
@@ -22,6 +21,10 @@ fun Context.inflater() = LayoutInflater.from(this)
 fun Context.broadcasts() = LocalBroadcastManager.getInstance(this)
 
 fun Context.am() = getSystemService(Context.ACCOUNT_SERVICE) as AccountManager
+
+fun Context.toast(text: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, text, duration).show()
+}
 
 // Permissions
 
