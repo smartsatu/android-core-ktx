@@ -6,7 +6,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,9 +68,8 @@ fun RecyclerView.addHorizontalAndVerticalDividers(@DrawableRes hResId: Int = 0, 
 }
 
 fun RecyclerView.addDividers(@DrawableRes hResId: Int = 0, @DrawableRes vResId: Int = 0) {
-    val layoutManager: RecyclerView.LayoutManager = this.layoutManager
-            ?: throw IllegalStateException("LayoutManager must be set")
-    when (layoutManager) {
+    when (val layoutManager: RecyclerView.LayoutManager = this.layoutManager
+            ?: throw IllegalStateException("LayoutManager must be set")) {
         is GridLayoutManager, is StaggeredGridLayoutManager -> {
             addHorizontalAndVerticalDividers(hResId, vResId)
         }
@@ -115,7 +113,7 @@ fun RecyclerView.decorateByDefault(@RecyclerView.Orientation orientation: Int = 
     } else {
         GridLayoutManager(context, spanCount, orientation, false)
     }
-    when(layoutManager) {
+    when (layoutManager) {
         is GridLayoutManager -> {
             if (spanSizeLookup != null && !isStaggered) {
                 layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
